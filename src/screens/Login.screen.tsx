@@ -30,11 +30,6 @@ const LoginScreen: React.FC<any> = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      {/* <Image
-        source={require('../../src/assets/images/')}
-        style={styles.logo}
-        resizeMode="contain"
-      /> */}
       <TextInput
         style={styles.input}
         placeholder="Username"

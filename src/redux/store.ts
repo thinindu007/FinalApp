@@ -1,13 +1,13 @@
 //store.ts
 import {configureStore} from '@reduxjs/toolkit';
 import loginReducer from '../reducers/LoginReducer';
-// import userDetailsReducer from '../reducers/userDetailsReducer';
+import userDetailsReducer from '../reducers/UserReducer';
 import tasksReducer from '../reducers/TaskReducer';
 
 const store = configureStore({
   reducer: {
     login: loginReducer,
-    // userDetails: userDetailsReducer,
+    userDetails: userDetailsReducer,
     tasks: tasksReducer,
   },
 });
