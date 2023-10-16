@@ -1,35 +1,41 @@
 import React, {useState} from 'react';
 import {View, FlatList, Text, TextInput, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {addTask, updateTask, deleteTask, Task} from '../reducers/TaskReducer';
-import {RootState} from '../redux/store';
-import {styles} from '../styles/Task.styles';
+import {addTask, updateTask, deleteTask, Task} from '../reducers/TaskReducer'; //importing redux actions and types related to Tasks
+import {RootState} from '../redux/store'; //Importing the Rootstate type ftom the redux store
+import {styles} from '../styles/Task.styles'; //importing styles for the Taskscreen
 
+//Defining the task screen component
 const TaskScreen: React.FC<any> = ({navigation}) => {
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
-  const dispatch = useDispatch();
-  const [newTaskText, setNewTaskText] = useState('');
-  const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
-  const [updatedTaskText, setUpdatedTaskText] = useState('');
+  const tasks = useSelector((state: RootState) => state.tasks.tasks); //Accessing tasks from the redux store
+  const dispatch = useDispatch(); //Accessing the dispatch function from redux
+  const [newTaskText, setNewTaskText] = useState(''); // Setting up state for the new task text
+  const [editingTaskId, setEditingTaskId] = useState<string | null>(null); // Setting up state for the task being edited
+  const [updatedTaskText, setUpdatedTaskText] = useState(''); // Setting up state for the updated task text
+
+  // Function to handle adding a new task or updating an existing one
   const handleAddTask = () => {
     if (newTaskText.trim()) {
       if (editingTaskId) {
-        dispatch(updateTask({id: editingTaskId, text: updatedTaskText}));
-        setEditingTaskId(null);
-        setUpdatedTaskText('');
+        dispatch(updateTask({id: editingTaskId, text: updatedTaskText})); // Dispatching the updateTask action
+        setEditingTaskId(null); // Resetting the editing task ID
+        setUpdatedTaskText(''); // Clearing the updated task text
       } else {
         const newTask: Task = {
-          id: Math.random().toString(),
-          text: newTaskText.trim(),
+          id: Math.random().toString(), // Generating a unique ID for the new task
+          text: newTaskText.trim(), // Storing the trimmed task text
         };
-        dispatch(addTask(newTask));
-        setNewTaskText('');
+        dispatch(addTask(newTask)); // Dispatching the addTask action
+        setNewTaskText(''); // Clearing the new task text
       }
     }
   };
+
+  // Function to handle deleting a task
   const handleDeleteTask = (taskId: string) => {
-    dispatch(deleteTask(taskId));
+    dispatch(deleteTask(taskId)); // Dispatching the deleteTask action
   };
+  // Rendering the UI components for the TaskScreen
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -97,4 +103,4 @@ const TaskScreen: React.FC<any> = ({navigation}) => {
   );
 };
 
-export default TaskScreen;
+export default TaskScreen; // Exporting the TaskScreen component

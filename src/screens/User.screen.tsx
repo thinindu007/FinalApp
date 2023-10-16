@@ -3,36 +3,39 @@ import {View, Text, TouchableOpacity, Image, Platform} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {useDispatch, useSelector} from 'react-redux';
-import {clearLoginData} from '../reducers/LoginReducer';
+import {clearLoginData} from '../reducers/LoginReducer'; //Importing the necessary action to clear login data
 import {
   setProfilePicture,
   clearProfilePicture,
-} from '../reducers/ProfileReducer';
-import {styles} from '../styles/User.styles';
+} from '../reducers/ProfileReducer'; // Importing actions related to profile picture
+import {styles} from '../styles/User.styles'; //Importing the styles for user screen
 
+// Defining the UserScreen component
 interface UserScreenProps {
   navigation: any;
 }
 
 const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
-  const dispatch = useDispatch();
-  const {username, password} = useSelector((state: any) => state.login);
-  const {profilePicture} = useSelector((state: any) => state.profile);
+  const dispatch = useDispatch(); // Accessing the dispatch function from Redux
+  const {username, password} = useSelector((state: any) => state.login); // Accessing username and password from the login state
+  const {profilePicture} = useSelector((state: any) => state.profile); // Accessing the profile picture from the profile state
 
   const [selectedImage, setSelectedImage] = useState<string | null>(
     profilePicture,
-  );
-  const [imageBase64, setImageBase64] = useState<string | null>(null);
+  ); // Setting up state for the selected image
+  const [imageBase64, setImageBase64] = useState<string | null>(null); // Setting up state for the base64 encoded image
 
+  // Function to handle the logout process
   const handleLogout = () => {
-    dispatch(clearLoginData());
-    dispatch(clearProfilePicture());
+    dispatch(clearLoginData()); // Dispatching the action to clear login data
+    dispatch(clearProfilePicture()); // Dispatching the action to clear profile picture
     navigation.reset({
       index: 0,
-      routes: [{name: 'Login'}],
+      routes: [{name: 'Login'}], // Resetting the navigation stack to the Login screen
     });
   };
 
+  // Function to pick an image from the device's gallery
   const pickImage = async () => {
     launchImageLibrary(
       {
@@ -46,10 +49,10 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
         if (response.assets && response.assets.length > 0) {
           const uri = response.assets[0].uri;
           if (uri) {
-            const base64Image = await imageUriToBase64(uri);
+            const base64Image = await imageUriToBase64(uri); // Converting the image URI to base64
             setImageBase64(base64Image);
 
-            dispatch(setProfilePicture(base64Image));
+            dispatch(setProfilePicture(base64Image)); // Dispatching the action to set the profile picture
           } else {
             console.error('No image URI found.');
           }
@@ -58,6 +61,7 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
     );
   };
 
+  // Function to convert image URI to base64 format
   const imageUriToBase64 = async (uri: string): Promise<string> => {
     let filePath = '';
     if (Platform.OS === 'ios' && uri.startsWith('file://')) {
@@ -68,13 +72,14 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
     return await ReactNativeBlobUtil.fs.readFile(filePath, 'base64');
   };
 
+  // Rendering the UI components for the UserScreen
   return (
     <View style={styles.container}>
       <View style={styles.userInfoContainer}>
         {selectedImage && (
           <Image
-            source={{uri: `data:image/png;base64,${selectedImage}`}}
-            style={{width: 100, height: 100}}
+            source={{uri: `data:image/png;base64,${selectedImage}`}} // Displaying the selected image
+            style={{width: 100, height: 100}} // Setting the dimensions of the image
           />
         )}
         <TouchableOpacity style={styles.imageuploadButton} onPress={pickImage}>
@@ -104,4 +109,4 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
   );
 };
 
-export default UserScreen;
+export default UserScreen; //Exporting the userscreen component

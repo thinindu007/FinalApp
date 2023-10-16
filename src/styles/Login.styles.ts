@@ -1,29 +1,30 @@
 import {StyleSheet} from 'react-native';
 
+//styling for the Login screen component
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: 'white',
+    flex: 1, //taking the full available space
+    justifyContent: 'center', //centering vertically
+    alignItems: 'center', //centering horizontally
+    padding: 20, //adding padding to the container
+    backgroundColor: 'white', //setting background color to white
   },
   input: {
-    width: '80%',
-    height: 40,
-    borderColor: '#800080',
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
+    width: '80%', // Setting the width of the input field
+    height: 40, // Setting the height of the input field
+    borderColor: '#800080', // Setting the border color
+    borderWidth: 1, // Adding a border to the input field
+    marginBottom: 20, // Adding margin at the bottom
+    paddingHorizontal: 10, // Adding horizontal padding
   },
   button: {
-    backgroundColor: '#800080',
-    padding: 10,
-    borderRadius: 5,
+    backgroundColor: '#800080', // Setting the background color of the button
+    padding: 10, // Adding padding to the button
+    borderRadius: 5, // Adding border radius to the button
   },
   buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
+    color: 'white', // Setting the text color of the button
+    textAlign: 'center', // Centering the text within the button
+    fontWeight: 'bold', // Setting the text to be bold
   },
 });
