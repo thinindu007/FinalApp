@@ -90,7 +90,7 @@ const TaskScreen: React.FC<any> = ({navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('FloorMap')}>
-          <Text style={styles.buttonText}>Floor Map</Text>
+          <Text style={styles.buttonText}>Map</Text>
         </TouchableOpacity>
       </View>
     </View>

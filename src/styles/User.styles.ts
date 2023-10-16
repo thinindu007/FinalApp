@@ -66,4 +66,27 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 10,
+    backgroundColor: '#f9f9f9',
+  },
+  button: {
+    flex: 1,
+    backgroundColor: '#800080',
+    padding: 15,
+    borderRadius: 5,
+    marginHorizontal: 10, // Added margin to separate the buttons
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
 });

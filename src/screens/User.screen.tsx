@@ -7,7 +7,7 @@ import {clearLoginData} from '../reducers/LoginReducer';
 import {
   setProfilePicture,
   clearProfilePicture,
-} from '../reducers/ProfileReducer'; // Import the new action
+} from '../reducers/ProfileReducer';
 import {styles} from '../styles/User.styles';
 
 interface UserScreenProps {
@@ -17,16 +17,16 @@ interface UserScreenProps {
 const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
   const dispatch = useDispatch();
   const {username, password} = useSelector((state: any) => state.login);
-  const {profilePicture} = useSelector((state: any) => state.profile); // Add profilePicture from the state
+  const {profilePicture} = useSelector((state: any) => state.profile);
 
   const [selectedImage, setSelectedImage] = useState<string | null>(
     profilePicture,
-  ); // Initialize with profilePicture
+  );
   const [imageBase64, setImageBase64] = useState<string | null>(null);
 
   const handleLogout = () => {
     dispatch(clearLoginData());
-    dispatch(clearProfilePicture()); // Clear the profile picture
+    dispatch(clearProfilePicture());
     navigation.reset({
       index: 0,
       routes: [{name: 'Login'}],
@@ -45,11 +45,14 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
       async response => {
         if (response.assets && response.assets.length > 0) {
           const uri = response.assets[0].uri;
-          const base64Image = await imageUriToBase64(uri);
-          setImageBase64(base64Image);
+          if (uri) {
+            const base64Image = await imageUriToBase64(uri);
+            setImageBase64(base64Image);
 
-          // Dispatch the setProfilePicture action with the base64Image
-          dispatch(setProfilePicture(base64Image));
+            dispatch(setProfilePicture(base64Image));
+          } else {
+            console.error('No image URI found.');
+          }
         }
       },
     );
@@ -57,8 +60,8 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
 
   const imageUriToBase64 = async (uri: string): Promise<string> => {
     let filePath = '';
-    if (Platform.OS === 'ios') {
-      filePath = uri.replace('file:', '');
+    if (Platform.OS === 'ios' && uri.startsWith('file://')) {
+      filePath = uri.replace('file://', '');
     } else {
       filePath = uri;
     }
@@ -83,6 +86,18 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
         <Text style={styles.userInfoText}>{password}</Text>
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
           <Text style={styles.logoutButtonText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Task')}>
+          <Text style={styles.buttonText}>Tasks</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('FloorMap')}>
+          <Text style={styles.buttonText}>Map</Text>
         </TouchableOpacity>
       </View>
     </View>

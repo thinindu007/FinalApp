@@ -8,11 +8,6 @@ export const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: 'white',
   },
-  // logo: {
-  //   width: 600,
-  //   height: 300,
-  //   marginBottom: 40,
-  // },
   input: {
     width: '80%',
     height: 40,
