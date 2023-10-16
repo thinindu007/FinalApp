@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {setLoginData} from '../reducers/LoginReducer';
 import {styles} from '../styles/Login.styles';

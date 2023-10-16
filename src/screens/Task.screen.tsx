@@ -1,4 +1,3 @@
-//TaskScreen.tsx
 import React, {useState} from 'react';
 import {View, FlatList, Text, TextInput, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';

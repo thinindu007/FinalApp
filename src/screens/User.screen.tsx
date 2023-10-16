@@ -4,22 +4,35 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearLoginData} from '../reducers/LoginReducer';
+import {
+  setProfilePicture,
+  clearProfilePicture,
+} from '../reducers/ProfileReducer'; // Import the new action
 import {styles} from '../styles/User.styles';
+
 interface UserScreenProps {
   navigation: any;
 }
+
 const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
   const dispatch = useDispatch();
   const {username, password} = useSelector((state: any) => state.login);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const {profilePicture} = useSelector((state: any) => state.profile); // Add profilePicture from the state
+
+  const [selectedImage, setSelectedImage] = useState<string | null>(
+    profilePicture,
+  ); // Initialize with profilePicture
   const [imageBase64, setImageBase64] = useState<string | null>(null);
+
   const handleLogout = () => {
     dispatch(clearLoginData());
+    dispatch(clearProfilePicture()); // Clear the profile picture
     navigation.reset({
       index: 0,
       routes: [{name: 'Login'}],
     });
   };
+
   const pickImage = async () => {
     launchImageLibrary(
       {
@@ -32,14 +45,17 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
       async response => {
         if (response.assets && response.assets.length > 0) {
           const uri = response.assets[0].uri;
-          setSelectedImage(uri);
-          const base64Image = await imageUriToBse64(uri);
+          const base64Image = await imageUriToBase64(uri);
           setImageBase64(base64Image);
+
+          // Dispatch the setProfilePicture action with the base64Image
+          dispatch(setProfilePicture(base64Image));
         }
       },
     );
   };
-  const imageUriToBse64 = async (uri: string): Promise<string> => {
+
+  const imageUriToBase64 = async (uri: string): Promise<string> => {
     let filePath = '';
     if (Platform.OS === 'ios') {
       filePath = uri.replace('file:', '');
@@ -48,12 +64,13 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
     }
     return await ReactNativeBlobUtil.fs.readFile(filePath, 'base64');
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.userInfoContainer}>
         {selectedImage && (
           <Image
-            source={{uri: selectedImage}}
+            source={{uri: `data:image/png;base64,${selectedImage}`}}
             style={{width: 100, height: 100}}
           />
         )}
