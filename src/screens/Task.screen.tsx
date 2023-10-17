@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {View, FlatList, Text, TextInput, TouchableOpacity} from 'react-native';
+import {
+  View,
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  RefreshControl,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {addTask, updateTask, deleteTask, Task} from '../reducers/TaskReducer'; //importing redux actions and types related to Tasks
 import {RootState} from '../redux/store'; //Importing the Rootstate type ftom the redux store
@@ -7,6 +14,7 @@ import {styles} from '../styles/Task.styles'; //importing styles for the Taskscr
 
 //Defining the task screen component
 const TaskScreen: React.FC<any> = ({navigation}) => {
+  const [refreshing, setRefreshing] = useState(false);
   const tasks = useSelector((state: RootState) => state.tasks.tasks); //Accessing tasks from the redux store
   const dispatch = useDispatch(); //Accessing the dispatch function from redux
   const [newTaskText, setNewTaskText] = useState(''); // Setting up state for the new task text
@@ -34,6 +42,12 @@ const TaskScreen: React.FC<any> = ({navigation}) => {
   // Function to handle deleting a task
   const handleDeleteTask = (taskId: string) => {
     dispatch(deleteTask(taskId)); // Dispatching the deleteTask action
+  };
+  const onRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000); //2 second delay
   };
   // Rendering the UI components for the TaskScreen
   return (
@@ -86,6 +100,12 @@ const TaskScreen: React.FC<any> = ({navigation}) => {
             </TouchableOpacity>
           </View>
         )}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh} // Adding the onRefresh function to the RefreshControl
+          />
+        }
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
