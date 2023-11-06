@@ -3,8 +3,13 @@ import {View, Alert, TouchableOpacity} from 'react-native';
 import Svg from 'react-native-svg';
 import FloorplanSvg from '../assets/images/FloorPlan.svg'; //Importing the svg image
 import {styles} from '../styles/Floormap.styles'; //Importing styles for the Floormap component
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const App: React.FC = () => {
+interface FloorMapScreenProps {
+  navigation: any;
+}
+
+const App: React.FC<FloorMapScreenProps> = ({navigation}) => {
   const [, setCoordinates] = useState({x: 0, y: 0}); // Initializing state for coordinates
 
   // Function to handle the press event on the floor map
@@ -28,6 +33,18 @@ const App: React.FC = () => {
           <FloorplanSvg width={300} height={300} />
         </Svg>
       </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Task')}>
+          <Icon name="tasks" size={30} color="#800080" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('User')}>
+          <Icon name="user-circle" size={30} color="#800080" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

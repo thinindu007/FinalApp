@@ -9,6 +9,7 @@ import {
   clearProfilePicture,
 } from '../reducers/ProfileReducer'; // Importing actions related to profile picture
 import {styles} from '../styles/User.styles'; //Importing the styles for user screen
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 // Defining the UserScreen component
 interface UserScreenProps {
@@ -97,12 +98,12 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Task')}>
-          <Text style={styles.buttonText}>Tasks</Text>
+          <Icon name="tasks" size={30} color="#800080" />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('FloorMap')}>
-          <Text style={styles.buttonText}>Map</Text>
+          <Icon name="map" size={30} color="#800080" />
         </TouchableOpacity>
       </View>
     </View>

@@ -10,7 +10,8 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {addTask, updateTask, deleteTask, Task} from '../reducers/TaskReducer'; //importing redux actions and types related to Tasks
 import {RootState} from '../redux/store'; //Importing the Rootstate type ftom the redux store
-import {styles} from '../styles/Task.styles'; //importing styles for the Taskscreen
+import {styles} from '../styles/Task.styles'; //importing styles for the Taskscreenimpo
+import Icon from 'react-native-vector-icons/FontAwesome6';
 
 //Defining the task screen component
 const TaskScreen: React.FC<any> = ({navigation}) => {
@@ -111,12 +112,12 @@ const TaskScreen: React.FC<any> = ({navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('User')}>
-          <Text style={styles.buttonText}>User</Text>
+          <Icon name="user-circle" size={30} color="#800080" />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('FloorMap')}>
-          <Text style={styles.buttonText}>Map</Text>
+          <Icon name="map" size={30} color="#800080" />
         </TouchableOpacity>
       </View>
     </View>

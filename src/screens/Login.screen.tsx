@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {setLoginData} from '../reducers/LoginReducer'; //Importing the necassary reducer for handle login data
+import LogScreensvg from '../assets/images/LogScreen.svg';
 import {styles} from '../styles/Login.styles'; //importing the styles for the login page
+import Svg from 'react-native-svg';
 
 //Defining the Loginscreen component
 const LoginScreen: React.FC<any> = ({navigation}) => {
@@ -27,6 +29,9 @@ const LoginScreen: React.FC<any> = ({navigation}) => {
   //Rendering UI components for the log in screen
   return (
     <View style={styles.container}>
+      <Svg style={styles.imageContainer}>
+        <LogScreensvg />
+      </Svg>
       <TextInput
         style={styles.input}
         placeholder="Username"
