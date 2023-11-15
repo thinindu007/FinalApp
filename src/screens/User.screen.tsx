@@ -10,6 +10,7 @@ import {
 } from '../reducers/ProfileReducer'; // Importing actions related to profile picture
 import {styles} from '../styles/User.styles'; //Importing the styles for user screen
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {clearTask} from '../reducers/TaskReducer';
 
 // Defining the UserScreen component
 interface UserScreenProps {
@@ -29,6 +30,7 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
   // Function to handle the logout process
   const handleLogout = () => {
     dispatch(clearLoginData()); // Dispatching the action to clear login data
+    dispatch(clearTask());
     dispatch(clearProfilePicture()); // Dispatching the action to clear profile picture
     navigation.reset({
       index: 0,

@@ -12,8 +12,8 @@ export const styles = StyleSheet.create({
   input: {
     width: '80%', // Setting the width of the input field
     height: 40, // Setting the height of the input field
-    borderColor: '#e4cae4', // Setting the border color
-    borderWidth: 2, // Adding a border to the input field
+    borderColor: '#800080', // Setting the border color
+    borderWidth: 1, // Adding a border to the input field
     marginBottom: 20, // Adding margin at the bottom
     paddingHorizontal: 10, // Adding horizontal padding
     borderRadius: 15,

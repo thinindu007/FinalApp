@@ -127,3 +127,15 @@ dependencies {
 }
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+plugins {
+  id "org.sonarqube" version "4.4.1.3373"
+}
+
+sonar {
+  properties {
+    property "sonar.projectKey", "thinindu007_FinalApp"
+    property "sonar.organization", "thinindu007"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
+}
