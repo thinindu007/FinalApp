@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {setLoginData} from '../reducers/LoginReducer'; //Importing the necassary reducer for handle login data
+import {setLoginData} from '../../redux/reducers/LoginReducer'; //Importing the necassary reducer for handle login data
 import LogScreensvg from '../assets/images/LogScreen.svg';
-import {styles} from '../styles/Login.styles'; //importing the styles for the login page
+import {styles} from './Login.styles'; //importing the styles for the login page
 import Svg from 'react-native-svg';
 
 //Defining the Loginscreen component

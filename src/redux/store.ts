@@ -2,10 +2,10 @@ import {configureStore} from '@reduxjs/toolkit';
 import {combineReducers} from 'redux';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import loginReducer from '../reducers/LoginReducer';
-import userDetailsReducer from '../reducers/UserReducer';
-import tasksReducer from '../reducers/TaskReducer';
-import profileReducer from '../reducers/ProfileReducer';
+import loginReducer from '../redux/reducers/LoginReducer';
+import userDetailsReducer from '../redux/reducers/UserReducer';
+import tasksReducer from '../redux/reducers/TaskReducer';
+import profileReducer from '../redux/reducers/ProfileReducer';
 
 const rootReducer = combineReducers({
   login: loginReducer,

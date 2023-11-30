@@ -1,48 +1,106 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Final App
 
-# Getting Started
+application is about a ToDo App for the users using React-Native 
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Table of Contents
 
-## Step 1: Start the Metro Server
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Folder Structure](#folder-structure)
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Getting Started
 
-To start Metro, run the following command from the _root_ of your React Native project:
+### Prerequisites
 
-```bash
-# using npm
-npm start
+- Node.js and npm installed
 
-# OR using Yarn
-yarn start
-```
+### Installation
 
-## Step 2: Start your Application
+1. Clone the repository
+   ```bash
+   git clone https://github.com/thinindu007/FinalApp.git
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+2. Install dependencies
+    cd project
+    npm install
 
-### For Android
+3. Run the application
+    npm start or npm run android
 
-```bash
-# using npm
-npm run android
+## Usage
 
-# OR using Yarn
-yarn android
-```
+To use the `UserScreen` component in your TypeScript React Native project, follow these steps:
 
-### For iOS
+1. **Installation:**
+   - Make sure you have the necessary dependencies installed in your project. You can install them using:
 
-```bash
-# using npm
-npm run ios
+     ```bash
+     npm install react-native-image-picker react-native-blob-util react-redux react-native-vector-icons
+     ```
 
-# OR using Yarn
-yarn ios
-```
+2. **Redux Setup:**
+   - Ensure that you have Redux set up in your project. If not, follow the [official Redux documentation](https://redux.js.org/introduction/getting-started) for guidance.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+3. **Import `UserScreen`:**
+   - Import the `UserScreen` component in the file where you want to use it:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+     ```tsx
+     import UserScreen from '../src/screens/user/User.screen.tsx' (path to your userscreen component);
+     ```
+
+4. **Integrate `UserScreen` into your Navigation:**
+
+     ```tsx
+     import UserScreen from './path-to-your-UserScreen-component';
+
+     const AppNavigator = createStackNavigator({
+       // Other screens...
+       User: UserScreen,
+     });
+
+     export default createAppContainer(AppNavigator);
+     ```
+
+5. **Use in Components:**
+   - You can now use the `UserScreen` component in your other TypeScript React Native components. For example:
+
+     ```tsx
+     import React from 'react';
+     import { View } from 'react-native';
+     import UserScreen from './path-to-your-UserScreen-component';
+
+     const App: React.FC = () => {
+       return (
+         <View>
+           {/* Other components */}
+           <UserScreen />
+         </View>
+       );
+     };
+
+     export default App;
+     ```
+
+6. **Customization:**
+   - Customize the appearance and behavior of `UserScreen` by adjusting the styles or modifying the component logic in the `UserScreen.tsx` file.
+
+Now, your `UserScreen` component should be working in your type script React-native project
+
+## Folder Structure
+
+- /src
+  - /assets
+    - /images
+  - /redux
+    - /reducer
+  - /screens
+    - /floormap
+    - /login
+    - /task
+    - /user
+- ...
+
+
+
 

@@ -8,9 +8,14 @@ import {
   RefreshControl,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {addTask, updateTask, deleteTask, Task} from '../reducers/TaskReducer'; //importing redux actions and types related to Tasks
-import {RootState} from '../redux/store'; //Importing the Rootstate type ftom the redux store
-import {styles} from '../styles/Task.styles'; //importing styles for the Taskscreenimpo
+import {
+  addTask,
+  updateTask,
+  deleteTask,
+  Task,
+} from '../../redux/reducers/TaskReducer'; //importing redux actions and types related to Tasks
+import {RootState} from '../../redux/store'; //Importing the Rootstate type ftom the redux store
+import {styles} from './Task.styles'; //importing styles for the Taskscreenimpo
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
 //Defining the task screen component

@@ -3,14 +3,14 @@ import {View, Text, TouchableOpacity, Image, Platform} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {useDispatch, useSelector} from 'react-redux';
-import {clearLoginData} from '../reducers/LoginReducer'; //Importing the necessary action to clear login data
+import {clearLoginData} from '../../redux/reducers/LoginReducer'; //Importing the necessary action to clear login data
 import {
   setProfilePicture,
   clearProfilePicture,
-} from '../reducers/ProfileReducer'; // Importing actions related to profile picture
-import {styles} from '../styles/User.styles'; //Importing the styles for user screen
+} from '../../redux/reducers/ProfileReducer'; // Importing actions related to profile picture
+import {styles} from './User.styles'; //Importing the styles for user screen
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {clearTask} from '../reducers/TaskReducer';
+import {clearTask} from '../../redux/reducers/TaskReducer';
 
 // Defining the UserScreen component
 interface UserScreenProps {
@@ -63,7 +63,6 @@ const UserScreen: React.FC<UserScreenProps> = ({navigation}) => {
       },
     );
   };
-
   // Function to convert image URI to base64 format
   const imageUriToBase64 = async (uri: string): Promise<string> => {
     let filePath = '';

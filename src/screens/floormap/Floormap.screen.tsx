@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Alert, TouchableOpacity} from 'react-native';
 import Svg from 'react-native-svg';
 import FloorplanSvg from '../assets/images/FloorPlan.svg'; //Importing the svg image
-import {styles} from '../styles/Floormap.styles'; //Importing styles for the Floormap component
+import {styles} from './Floormap.styles'; //Importing styles for the Floormap component
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 interface FloorMapScreenProps {
