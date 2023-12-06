@@ -1,6 +1,6 @@
 # Final App
 
-application is about a ToDo App for the users using React-Native 
+application is about a ToDo App for the users using React-Native and type script
 
 ## Table of Contents
 
